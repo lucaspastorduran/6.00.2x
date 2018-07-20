@@ -14,10 +14,11 @@ class Item(object):
     def __str__(self):
         return '<' + self.name + ', ' + str(self.value) + ', '\
                      + str(self.weight) + '>'
-    #def __eq__(self, other):
-    #    return self.getName() == other.getName() and \
-    #           self.getValue() == other.getValue() and \
-    #           self.getWeight() == other.getWeight()
+    def __eq__(self, other):
+        return self.getName() == other.getName() and \
+               self.getValue() == other.getValue() and \
+               self.getWeight() == other.getWeight()
+               
 
 def buildItems():
     return [Item(n,v,w) for n,v,w in (('clock', 175, 10),

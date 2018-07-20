@@ -28,7 +28,12 @@ def yieldAllCombos(items):
     combinations = 0
     for bag1_elem in powerSet(items):
         # Choose elements that will be in bag B from the remaining ones
-        remaining_elem = list(set(items) - set(bag1_elem))
+        #remaining_elem = list(set(items) - set(bag1_elem))
+        remaining_elem = []
+        for element in items:
+            if element not in bag1_elem:
+                remaining_elem.append(element)
+        #remaining_elem = [element if element not in bag1_elem for element in items]
         print('For bag1 = {}. We have remaining elements: {}'.format(bag1_elem, remaining_elem))
         for bag2_elem in powerSet(remaining_elem):
             yield (bag1_elem, bag2_elem)
@@ -54,6 +59,12 @@ for number in powerSet([1,2,3]):
 print('\nTesting yieldAllCombos for [1,2,3]:')
 for combo in yieldAllCombos([1,2,3]):
     print(combo)
+
+print('\nTesting Item comparations:')
+items_to_compare = [Item('thing1', 0, 0), Item('thing1', 0, 0), Item('thing1', 1, 0), Item('thing1', 1, 1), Item('thing2', 0, 0)]
+for item1 in items_to_compare:
+    for item2 in items_to_compare:
+        print('{} == {}? {}'.format(item1, item2, item1 == item2))
 
 definedItems = buildItems()
 print(definedItems)
